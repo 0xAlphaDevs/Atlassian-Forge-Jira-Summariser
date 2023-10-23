@@ -25,11 +25,12 @@ const generateDescription = async (prompt) => {
   // API call to OpenAI
   const response = await fetch(url, options);
   let apiResponse = await response.json();
-  // console.log(apiResponse);
+  console.log(apiResponse);
+  console.log(apiResponse.status);
   let result = "";
 
-  if (apiResponse.status === "starting") {
-    let predictionUrl = `https://api.replicate.com/v1/predictions/${response.id}`;
+  if (apiResponse.status == "starting") {
+    let predictionUrl = `https://api.replicate.com/v1/predictions/${apiResponse.id}`;
 
     const options = {
       headers: {
@@ -40,15 +41,12 @@ const generateDescription = async (prompt) => {
     // API call to OpenAI
     const output = await fetch(predictionUrl, options);
     const prediction = await output.json();
+    console.log(prediction.status);
 
-    if (prediction.status === "succeeded") {
-      console.log("Result - " + prediction.output);
-      result = prediction.output;
-    } else {
-      console.log("Error in response");
-    }
+    console.log("Result - " + prediction.output);
+    result = prediction.output;
   } else {
-    console.log("Error in response");
+    console.log("Error in response 1");
   }
   return result;
 };
