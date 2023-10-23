@@ -48,11 +48,23 @@ const generateDescription = async (prompt) => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       output = await fetch(predictionUrl, options);
       prediction = await output.json();
-      console.log(prediction.status);
+      // console.log(prediction.status);
+      if (prediction.status == "failed" || prediction.status == "canceled") {
+        console.log("API call failed");
+        break;
+      }
     }
 
-    console.log("Result - " + prediction.output);
+    // console.log("Result - " + prediction.output);
     result = prediction.output;
+    // Split the response into paragraphs
+    const paragraphs = result.split(/\n\s*\n/);
+
+    // Remove the first paragraph
+    paragraphs.shift();
+
+    // Join the remaining paragraphs with newlines
+    result = paragraphs.join("\n\n");
   } else {
     console.log("Error in response 1");
   }
