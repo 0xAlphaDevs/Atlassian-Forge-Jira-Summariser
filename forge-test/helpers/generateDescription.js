@@ -24,7 +24,8 @@ const generateDescription = async (prompt) => {
 
   // API call to OpenAI
   const response = await fetch(url, options);
-  console.log(response);
+  let apiResponse = await response.json();
+  console.log(apiResponse);
   let result = "";
 
   // if (response.status === "starting") {
