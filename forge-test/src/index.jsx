@@ -5,6 +5,7 @@ import ForgeUI, {
   render,
   Fragment,
   Button,
+  ButtonSet,
 } from "@forge/ui";
 import { useState } from "@forge/ui";
 
@@ -14,9 +15,12 @@ const App = () => {
 
   const { extensionContext } = useProductContext();
 
-  function generateDescription() {
+  async function generateDescription() {
     setLoading(true);
-    setDescription("ujvgwdik");
+    setTimeout(() => {
+      setDescription("ujvgwdik");
+      setLoading(false);
+    }, 2000);
   }
 
   function addDesription() {
@@ -28,10 +32,11 @@ const App = () => {
 
       <Text>Repository UUID : {extensionContext.repository.uuid}</Text>
       {/* Ternary show skeleton when API call is in place */}
-      <Text>{description}</Text>
-      <Button text="Generate Description" onClick={generateDescription} />
-
-      {/* Add a blue button saying add description to right after description is generated */}
+      <Text>{loading ? "Loading..." : description}</Text>
+      <ButtonSet>
+        <Button text="Generate Description" onClick={generateDescription} />
+        <Button text="Add Description" onClick={addDesription} />
+      </ButtonSet>
     </Fragment>
   );
 };
