@@ -8,7 +8,7 @@ const generateDescription = async (prompt) => {
 
   // Body for API call
   const payload = {
-    version: "a52e56fee2269a78c9279800ec88898cecb6c8f1df22a6483132bea266648f00",
+    version: "ac944f2e49c55c7e965fc3d93ad9a7d9d947866d6793fb849dd6b4747d0c061c",
     input: { prompt: prompt },
   };
 
@@ -26,9 +26,27 @@ const generateDescription = async (prompt) => {
   const response = await fetch(url, options);
   let result = "";
 
-  if (response.status === 200) {
-    const chatCompletion = await response.json();
-    console.log(chatCompletion);
+  if (response.status === "starting") {
+    let predictionUrl = `https://api.replicate.com/v1/predictions/${response.id}`;
+
+    const options = {
+      headers: {
+        Authorization: `Token ${getReplicateToken()}`,
+      },
+    };
+
+    // API call to OpenAI
+    const output = await fetch(predictionUrl, options);
+
+    if (output.status === "succeeded") {
+      result = output.output;
+      console.log("Result Output - " + result);
+    } else {
+      console.log("Error in response");
+    }
+
+    // const chatCompletion = await response.json();
+    // console.log(chatCompletion);
     // const firstChoice = chatCompletion.choices[0];
 
     // if (firstChoice) {
@@ -40,8 +58,7 @@ const generateDescription = async (prompt) => {
     //   result = `AI response did not include any choices.`;
     // }
   } else {
-    const text = await response.text();
-    result = text;
+    console.log("Error in response");
   }
   return result;
 };

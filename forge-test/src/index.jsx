@@ -20,7 +20,10 @@ const App = () => {
   const { extensionContext } = useProductContext();
 
   // ChatGPT prompt to get the summary
-  const prompt = `Here is a sample data where all the comments of a jira issue is joined together`;
+  const prompt = `Write a description for a pull request with these commits in points:
+- feat: add navbar
+- fix: fix links in navbar`;
+
   // OpenAI API call to get the summary.
   const [description] = useState(async () => {
     return await generateDescription(prompt);
@@ -65,7 +68,7 @@ const App = () => {
       <Text>Pull request Id : {extensionContext.pullRequest.id}</Text>
       <Text>Repository UUID : {extensionContext.repository.uuid}</Text>
       {/* Ternary show skeleton when API call is in place */}
-      <Text>{loading ? "Loading..." : description}</Text>
+      <Text>{description}</Text>
       <ButtonSet>
         <Button text="Generate Description" onClick={generateDescription} />
         <Button
