@@ -1,18 +1,29 @@
 // generate desciption for a pull request using Open AI API
 import api, { route, fetch } from "@forge/api";
 
-const generateDescription = async (pullRequestId) => {
+const generateDescription = async () => {};
+
+const addDescription = async (pullRequestId, description) => {
+  const workspaceId = extensionContext.pullRequest.repository.workspace.uuid;
+  const repositoryId = extensionContext.pullRequest.repository.uuid;
+
+  const bodyData = JSON.stringify({
+    description: description,
+  });
   const res = await api
     .asApp()
-    .requestBitbucket(route`/2.0/repositories/${workspaceId}/${repositoryId}`, {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer <access_token>",
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: bodyData,
-    });
+    .requestBitbucket(
+      route`/2.0/repositories/${workspaceId}/${repositoryId}/pullrequests/${pullRequestId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer <access_token>",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: bodyData,
+      }
+    );
 
   const data = await res.json();
   return data;
@@ -79,3 +90,5 @@ export const getOpenAPIModel = () => {
   return "gpt-3.5-turbo";
   // return 'gpt-4';
 };
+
+export { addDescription };
