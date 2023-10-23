@@ -12,6 +12,6 @@ permissions:
   external:
     fetch:
       backend:
-        - "api.openai.com"
+        - "api.replicate.com"
 app:
   id: ari:cloud:ecosystem::app/e9a6dd76-00d7-4fa7-bef5-d24f5babd8ea
