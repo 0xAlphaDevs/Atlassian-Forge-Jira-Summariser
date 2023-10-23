@@ -17,10 +17,8 @@ const App = () => {
 
   async function generateDescription() {
     setLoading(true);
-    setTimeout(() => {
-      setDescription("ujvgwdik");
-      setLoading(false);
-    }, 2000);
+    setDescription("ujvgwdik");
+    setLoading(false);
   }
 
   function addDesription() {
@@ -35,7 +33,11 @@ const App = () => {
       <Text>{loading ? "Loading..." : description}</Text>
       <ButtonSet>
         <Button text="Generate Description" onClick={generateDescription} />
-        <Button text="Add Description" onClick={addDesription} />
+        <Button
+          text="Add Description"
+          onClick={addDesription}
+          appearance="warning"
+        />
       </ButtonSet>
     </Fragment>
   );
