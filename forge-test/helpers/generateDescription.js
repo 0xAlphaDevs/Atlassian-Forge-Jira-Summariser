@@ -1,7 +1,50 @@
 // generate desciption for a pull request using Open AI API
 import api, { route, fetch } from "@forge/api";
 
-const generateDescription = async () => {};
+const generateDescription = async (prompt) => {
+  // const choiceCount = 1;
+  // OpenAI API endpoint
+  const url = `https://api.replicate.com/v1/predictions`;
+
+  // Body for API call
+  const payload = {
+    version: "a52e56fee2269a78c9279800ec88898cecb6c8f1df22a6483132bea266648f00",
+    input: { prompt: prompt },
+  };
+
+  // API call options
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Token ${getReplicateToken()}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  };
+
+  // API call to OpenAI
+  const response = await fetch(url, options);
+  let result = "";
+
+  if (response.status === 200) {
+    const chatCompletion = await response.json();
+    console.log(chatCompletion);
+    // const firstChoice = chatCompletion.choices[0];
+
+    // if (firstChoice) {
+    //   result = firstChoice.message.content;
+    // } else {
+    //   console.warn(
+    //     `Chat completion response did not include any assistance choices.`
+    //   );
+    //   result = `AI response did not include any choices.`;
+    // }
+  } else {
+    const text = await response.text();
+    result = text;
+  }
+  return result;
+};
 
 const addDescription = async (pullRequestId, description) => {
   const workspaceId = extensionContext.pullRequest.repository.workspace.uuid;
@@ -29,60 +72,9 @@ const addDescription = async (pullRequestId, description) => {
   return data;
 };
 
-const callOpenAI = async (prompt) => {
-  const choiceCount = 1;
-  // OpenAI API endpoint
-  const url = `https://api.openai.com/v1/chat/completions`;
-
-  // Body for API call
-  const payload = {
-    model: getOpenAPIModel(),
-    n: choiceCount,
-    messages: [
-      {
-        role: "user",
-        content: prompt,
-      },
-    ],
-  };
-
-  // API call options
-  const options = {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${getOpenAPIKey()}`,
-      "Content-Type": "application/json",
-    },
-    redirect: "follow",
-    body: JSON.stringify(payload),
-  };
-
-  // API call to OpenAI
-  const response = await fetch(url, options);
-  let result = "";
-
-  if (response.status === 200) {
-    const chatCompletion = await response.json();
-    const firstChoice = chatCompletion.choices[0];
-
-    if (firstChoice) {
-      result = firstChoice.message.content;
-    } else {
-      console.warn(
-        `Chat completion response did not include any assistance choices.`
-      );
-      result = `AI response did not include any choices.`;
-    }
-  } else {
-    const text = await response.text();
-    result = text;
-  }
-  return result;
-};
-
 // Get OpenAI API key
-export const getOpenAPIKey = () => {
-  return process.env.OPEN_API_KEY;
+export const getReplicateToken = () => {
+  return process.env.REPLICATE_API_TOKEN;
 };
 
 // Get OpenAI model
@@ -91,4 +83,4 @@ export const getOpenAPIModel = () => {
   // return 'gpt-4';
 };
 
-export { addDescription };
+export { addDescription, generateDescription };

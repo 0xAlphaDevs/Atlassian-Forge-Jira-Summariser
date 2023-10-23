@@ -8,19 +8,36 @@ import ForgeUI, {
   ButtonSet,
 } from "@forge/ui";
 import { useState } from "@forge/ui";
-import { addDescription } from "../helpers/generateDescription";
+import {
+  addDescription,
+  generateDescription,
+} from "../helpers/generateDescription";
 
 const App = () => {
-  const [description, setDescription] = useState("abcd");
+  // const [description, setDescription] = useState("abcd");
   const [loading, setLoading] = useState(false);
 
   const { extensionContext } = useProductContext();
 
-  async function generateDescription() {
-    setLoading(true);
-    setDescription("ujvgwdik");
-    setLoading(false);
-  }
+  // ChatGPT prompt to get the summary
+  const prompt = `Here is a sample data where all the comments of a jira issue is joined together`;
+  // OpenAI API call to get the summary.
+  const [description] = useState(async () => {
+    return await generateDescription(prompt);
+  });
+
+  console.log("Summary - " + description);
+
+  // async function generateDescription() {
+  //   setLoading(true);
+
+  //   await generateDescription().then((data) => {
+  //     console.log(data);
+  //     setDescription(data);
+  //   });
+
+  //   setLoading(false);
+  // }
 
   async function handleAddDescription() {
     setLoading(true);
