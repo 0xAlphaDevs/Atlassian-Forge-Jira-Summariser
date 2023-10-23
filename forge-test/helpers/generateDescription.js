@@ -39,14 +39,14 @@ const generateDescription = async (prompt) => {
     };
 
     // API call to OpenAI
-    const output = await fetch(predictionUrl, options);
-    const prediction = await output.json();
+    let output = await fetch(predictionUrl, options);
+    let prediction = await output.json();
     console.log(prediction.status);
 
     // poll the api every 2 sec until the status is succedded
     while (prediction.status != "succeeded") {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      const output = await fetch(predictionUrl, options);
+      output = await fetch(predictionUrl, options);
       prediction = await output.json();
       console.log(prediction.status);
     }
