@@ -2,17 +2,19 @@
 import api, { route, fetch } from "@forge/api";
 
 const generateDescription = async (pullRequestId) => {
-  const response = await api
+  const res = await api
     .asApp()
-    .requestJira(`/rest/api/3/issue/${pullRequestId}/transitions`, {
-      method: "POST",
-      body: JSON.stringify({
-        transition: {
-          id: "31",
-        },
-      }),
+    .requestBitbucket(route`/2.0/repositories/${workspaceId}/${repositoryId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer <access_token>",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: bodyData,
     });
-  const data = await response.json();
+
+  const data = await res.json();
   return data;
 };
 
