@@ -1,0 +1,13 @@
+modules:
+  "bitbucket:repoCodeOverviewCard":
+    - key: hello-world-app-hello-world-panel
+      function: main
+      title: Forge app for Yshv
+  function:
+    - key: main
+      handler: index.run
+permissions:
+  scopes:
+    - "read:repository:bitbucket"
+app:
+  id: ari:cloud:ecosystem::app/e9a6dd76-00d7-4fa7-bef5-d24f5babd8ea
