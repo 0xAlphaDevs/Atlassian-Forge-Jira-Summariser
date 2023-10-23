@@ -1,8 +1,8 @@
 modules:
-  "bitbucket:repoCodeOverviewCard":
-    - key: hello-world-app-hello-world-panel
+  "bitbucket:repoPullRequestAction":
+    - key: pull-request-description-updator
       function: main
-      title: Forge app for Yshv
+      title: Forge app for Pull Request
   function:
     - key: main
       handler: index.run
