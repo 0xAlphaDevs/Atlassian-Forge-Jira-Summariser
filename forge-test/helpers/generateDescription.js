@@ -43,6 +43,14 @@ const generateDescription = async (prompt) => {
     const prediction = await output.json();
     console.log(prediction.status);
 
+    // poll the api every 2 sec until the status is succedded
+    while (prediction.status != "succeeded") {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const output = await fetch(predictionUrl, options);
+      prediction = await output.json();
+      console.log(prediction.status);
+    }
+
     console.log("Result - " + prediction.output);
     result = prediction.output;
   } else {
