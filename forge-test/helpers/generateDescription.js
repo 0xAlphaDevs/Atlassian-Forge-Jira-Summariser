@@ -24,42 +24,43 @@ const generateDescription = async (prompt) => {
 
   // API call to OpenAI
   const response = await fetch(url, options);
+  console.log(response);
   let result = "";
 
-  if (response.status === "starting") {
-    let predictionUrl = `https://api.replicate.com/v1/predictions/${response.id}`;
+  // if (response.status === "starting") {
+  //   let predictionUrl = `https://api.replicate.com/v1/predictions/${response.id}`;
 
-    const options = {
-      headers: {
-        Authorization: `Token ${getReplicateToken()}`,
-      },
-    };
+  //   const options = {
+  //     headers: {
+  //       Authorization: `Token ${getReplicateToken()}`,
+  //     },
+  //   };
 
-    // API call to OpenAI
-    const output = await fetch(predictionUrl, options);
+  //   // API call to OpenAI
+  //   const output = await fetch(predictionUrl, options);
 
-    if (output.status === "succeeded") {
-      result = output.output;
-      console.log("Result Output - " + result);
-    } else {
-      console.log("Error in response");
-    }
+  //   if (output.status === "succeeded") {
+  //     result = output.output;
+  //     console.log("Result Output - " + result);
+  //   } else {
+  //     console.log("Error in response");
+  //   }
 
-    // const chatCompletion = await response.json();
-    // console.log(chatCompletion);
-    // const firstChoice = chatCompletion.choices[0];
+  //   // const chatCompletion = await response.json();
+  //   // console.log(chatCompletion);
+  //   // const firstChoice = chatCompletion.choices[0];
 
-    // if (firstChoice) {
-    //   result = firstChoice.message.content;
-    // } else {
-    //   console.warn(
-    //     `Chat completion response did not include any assistance choices.`
-    //   );
-    //   result = `AI response did not include any choices.`;
-    // }
-  } else {
-    console.log("Error in response");
-  }
+  //   // if (firstChoice) {
+  //   //   result = firstChoice.message.content;
+  //   // } else {
+  //   //   console.warn(
+  //   //     `Chat completion response did not include any assistance choices.`
+  //   //   );
+  //   //   result = `AI response did not include any choices.`;
+  //   // }
+  // } else {
+  //   console.log("Error in response");
+  // }
   return result;
 };
 
