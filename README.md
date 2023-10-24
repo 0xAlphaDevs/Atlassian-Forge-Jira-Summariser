@@ -1,5 +1,8 @@
 # Jira Issue Summariser and PR description Generator
 
+Codegeist Unleashed
+
+An app that condenses Jira issue descriptions and auto-generates PR summaries for streamlined project management.
 
 Team [AlphaDevs](https://alphadevs.dev) 👇
 
