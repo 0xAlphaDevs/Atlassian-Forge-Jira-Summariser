@@ -15,9 +15,24 @@ const App = () => {
   const [description, setDescription] = useState(
     "Description will be shown here."
   );
+
+  // Function to convert plain text to Markdown
+  function textToMarkdown(text) {
+    const lines = text.split("•");
+    const items = lines
+      .filter((line) => line.trim() !== "")
+      .map((line) => line.trim());
+
+    return `## Here is a summary of the issue under 100 words\n\n${items
+      .map((item) => `- ${item}`)
+      .join("\n")}`;
+  }
+
+  const markdownText = textToMarkdown(apiResponse);
   const summarise = async () => {
     const result = await generateDescription(platformContext.issueKey);
-    setDescription(result);
+    let formattedResult = textToMarkdown(result);
+    setDescription(formattedResult);
   };
   console.log("Summary - " + description);
 
