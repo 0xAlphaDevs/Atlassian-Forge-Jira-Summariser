@@ -18,7 +18,7 @@ const preparePrompt = async (issueKey) => {
   let combinedText = "";
 
   result.fields.description.content.forEach((item) => {
-    if (item.type === "paragraph" && Array.isArray(item.content)) {
+    if (Array.isArray(item.content)) {
       item.content.forEach((textItem) => {
         if (textItem.type === "text" && typeof textItem.text === "string") {
           combinedText += textItem.text + " ";
