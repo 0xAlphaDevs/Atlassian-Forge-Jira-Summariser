@@ -10,7 +10,6 @@ permissions:
   scopes:
     - "read:repository:bitbucket"
     - "write:pullrequest:bitbucket"
-
   external:
     fetch:
       backend:

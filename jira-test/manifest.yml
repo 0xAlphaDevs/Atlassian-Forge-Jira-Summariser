@@ -8,5 +8,9 @@ modules:
   function:
     - key: main
       handler: index.run
+  external:
+    fetch:
+      backend:
+        - "api.replicate.com"
 app:
   id: ari:cloud:ecosystem::app/4e551cfb-1e6b-4db9-bb59-1be13d1a758c
