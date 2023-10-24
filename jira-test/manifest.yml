@@ -8,6 +8,9 @@ modules:
   function:
     - key: main
       handler: index.run
+permissions:
+  scopes:
+    - "read:jira-work"
   external:
     fetch:
       backend:
