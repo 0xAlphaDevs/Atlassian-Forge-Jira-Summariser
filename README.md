@@ -19,6 +19,10 @@ Team [AlphaDevs](https://alphadevs.dev) 👇
 
 ## Project Specs
 
+- Forge (CLI & API)
+- Replicate (Running machine learning models in the cloud)
+- 
+
 
 ## App Working / ScreenShots
 
@@ -40,7 +44,7 @@ Team [AlphaDevs](https://alphadevs.dev) 👇
 
 ## Our Solution (Architecture)
 
-### 1.
+### 1. 
 
 
 ## Team
