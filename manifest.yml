@@ -2,7 +2,7 @@ modules:
   jira:issuePanel:
     - key: jira-summariser
       function: main
-      title: Generate Description
+      title: Generate Summary
       icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
   function:
     - key: main
@@ -15,4 +15,4 @@ permissions:
       backend:
         - "api.replicate.com"
 app:
-  id: ari:cloud:ecosystem::app/4e551cfb-1e6b-4db9-bb59-1be13d1a758c
+  id: ari:cloud:ecosystem::app/739e4d67-7f9e-409e-ad84-73ac9fbebc91
