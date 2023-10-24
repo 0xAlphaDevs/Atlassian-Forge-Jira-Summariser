@@ -1,4 +1,6 @@
 import ForgeUI, {
+  Fragment,
+  Button,
   IssuePanel,
   render,
   Text,
@@ -8,19 +10,31 @@ import ForgeUI, {
 import { generateDescription } from "../helpers/generateDescription";
 
 const App = () => {
-  const context = useProductContext();
+  const { platformContext } = useProductContext();
 
-  const [description] = useState(async () => {
-    return await generateDescription();
-  });
-
+  const [description, setDescription] = useState(
+    "Description will be shown here."
+  );
+  const summarise = async () => {
+    const result = await generateDescription(platformContext.issueKey);
+    setDescription(result);
+  };
   console.log("Summary - " + description);
 
-  console.log(context);
   return (
-    <IssuePanel>
+    <Fragment>
       <Text>{description} </Text>
-    </IssuePanel>
+      <Button
+        onClick={async () => {
+          await summarise();
+        }}
+        text="Summarise"
+      />
+    </Fragment>
   );
 };
-export const run = render(<App />);
+export const run = render(
+  <IssuePanel>
+    <App />
+  </IssuePanel>
+);
