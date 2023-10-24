@@ -16,6 +16,8 @@ const App = () => {
     "Description will be shown here."
   );
 
+  const [bulletPoints, setBulletPoints] = useState([]);
+
   // Function to convert plain text to Markdown
   function textToMarkdown(text) {
     // convert text to string
@@ -25,9 +27,9 @@ const App = () => {
       .filter((line) => line.trim() !== "")
       .map((line) => line.trim());
 
-    return `## Here is a summary of the issue under 100 words\n\n${items
-      .map((item) => `- ${item}`)
-      .join("\n")}`;
+    setBulletPoints(items);
+
+    return `Here is a summary of the issue under 100 words : `;
   }
 
   const summarise = async () => {
@@ -40,6 +42,9 @@ const App = () => {
   return (
     <Fragment>
       <Text>{description} </Text>
+      {bulletPoints.map((item) => (
+        <Text>{item}</Text>
+      ))}
       <Button
         onClick={async () => {
           await summarise();
