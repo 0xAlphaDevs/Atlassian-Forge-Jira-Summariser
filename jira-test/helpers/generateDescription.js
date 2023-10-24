@@ -1,3 +1,4 @@
+import api, { fetch } from "@forge/api";
 import { preparePrompt } from "./preparePrompt";
 
 const generateDescription = async (issueKey) => {
