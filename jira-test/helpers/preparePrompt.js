@@ -13,7 +13,21 @@ const preparePrompt = async (issueKey) => {
   const result = await response.json();
 
   console.log(`Response: ${response.status} ${response.statusText}`);
-  console.log(result.fields.description.content);
+  // console.log(result.fields.description.content);
+
+  let combinedText = "";
+
+  result.fields.description.content.forEach((item) => {
+    if (item.type === "paragraph" && Array.isArray(item.content)) {
+      item.content.forEach((textItem) => {
+        if (textItem.type === "text" && typeof textItem.text === "string") {
+          combinedText += textItem.text + " ";
+        }
+      });
+    }
+  });
+
+  console.log(combinedText);
 };
 
 export { preparePrompt };
