@@ -1,10 +1,9 @@
-// generate desciption for a pull request using Open AI API
-import api, { route, fetch } from "@forge/api";
+import { preparePrompt } from "./preparePrompt";
 
 const generateDescription = async (issueKey) => {
   // prepare the prompt using the issue data
 
-  // await preparePrompt(issueKey);
+  await preparePrompt(issueKey);
   //   const prompt = "";
 
   //   const url = `https://api.replicate.com/v1/predictions`;
