@@ -10,8 +10,10 @@ const preparePrompt = async (issueKey) => {
       },
     });
 
+  const result = await response.json();
+
   console.log(`Response: ${response.status} ${response.statusText}`);
-  console.log(await response.json());
+  console.log(result.fields.description.content);
 };
 
 export { preparePrompt };
