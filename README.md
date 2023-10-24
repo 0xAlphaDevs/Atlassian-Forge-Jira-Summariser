@@ -29,11 +29,14 @@ Team [AlphaDevs](https://alphadevs.dev) 👇
 
 ### Frontend
 
-- 
+- Atlassian UI Kit
 
 ### Other
 
--
+- Replicate
+- Forge API
+- Forge CLI
+  
 
 ## Our Solution (Architecture)
 
