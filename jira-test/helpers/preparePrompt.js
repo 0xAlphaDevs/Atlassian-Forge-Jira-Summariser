@@ -27,7 +27,7 @@ const preparePrompt = async (issueKey) => {
     }
   });
 
-  console.log(combinedText);
+  return combinedText;
 };
 
 export { preparePrompt };
