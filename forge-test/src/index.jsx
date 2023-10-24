@@ -19,14 +19,13 @@ const App = () => {
 
   const { extensionContext } = useProductContext();
 
-  // ChatGPT prompt to get the summary
-  const prompt = `Write a description for a pull request with these commits in points:
-- feat: add navbar
-- fix: fix links in navbar`;
-
   // OpenAI API call to get the summary.
   const [description] = useState(async () => {
-    return await generateDescription(prompt);
+    return await generateDescription(
+      extensionContext.pullRequest.id,
+      extensionContext.pullRequest.repository.uuid,
+      extensionContext.pullRequest.repository.workspace.uuid
+    );
   });
 
   console.log("Summary - " + description);
@@ -42,26 +41,26 @@ const App = () => {
   //   setLoading(false);
   // }
 
-  async function handleAddDescription() {
-    setLoading(true);
-    try {
-      const pullRequestId = extensionContext.pullRequest.id;
-      const workspaceId =
-        extensionContext.pullRequest.repository.workspace.uuid;
-      const repositoryId = extensionContext.pullRequest.repository.uuid;
-      const data = await addDescription(
-        pullRequestId,
-        description,
-        workspaceId,
-        repositoryId
-      );
-      console.log(data);
-    } catch (error) {
-      console.error("Failed to update description:", error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // async function handleAddDescription() {
+  //   setLoading(true);
+  //   try {
+  //     const pullRequestId = extensionContext.pullRequest.id;
+  //     const workspaceId =
+  //       extensionContext.pullRequest.repository.workspace.uuid;
+  //     const repositoryId = extensionContext.pullRequest.repository.uuid;
+  //     const data = await addDescription(
+  //       pullRequestId,
+  //       description,
+  //       workspaceId,
+  //       repositoryId
+  //     );
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error("Failed to update description:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   return (
     <Fragment>
