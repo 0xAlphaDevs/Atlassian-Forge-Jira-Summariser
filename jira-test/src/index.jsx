@@ -1,30 +1,31 @@
+//   const context = useProductContext();
+//   console.log(context);
+
 import ForgeUI, {
+  IssuePanel,
+  IssuePanelAction,
   render,
-  useEffect,
-  useProductContext,
-  IssueGlance,
   Text,
-  Link,
+  useProductContext,
+  useState,
 } from "@forge/ui";
 
 const App = () => {
-  const context = useProductContext();
-  console.log(context.platformContext.issueKey);
-
+  // const [waveCount, setWaveCount] = useState(0);
   return (
-    <Text>
-      <Link
-        href={`https://bitbucket.org/branch/create?issueKey=${context.platformContext.issueKey}&issueType=${context.platformContext.issueType}`}
-      >
-        {" "}
-        Hello from the Issue glance!
-      </Link>
-    </Text>
+    <IssuePanel
+    // actions={[
+    //   <IssuePanelAction
+    //     text="Custom action"
+    //     onClick={() => {
+    //       setWaveCount(waveCount + 1);
+    //     }}
+    //   />,
+    // ]}
+    >
+      {/* <Text>Hello, world! {"👋".repeat(waveCount)}</Text> */}
+      <Text>This is a AI Generated description. </Text>
+    </IssuePanel>
   );
 };
-
-export const run = render(
-  <IssueGlance>
-    <App />
-  </IssueGlance>
-);
+export const run = render(<App />);

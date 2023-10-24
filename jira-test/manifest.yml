@@ -1,8 +1,8 @@
 modules:
-  jira:issueGlance:
+  jira:issuePanel:
     - key: jira-test-hello-world-panel
       function: main
-      title: jira-test
+      title: Generate Description
       label: create-branch
       icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
   function:
