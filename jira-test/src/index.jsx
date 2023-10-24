@@ -28,7 +28,6 @@ const App = () => {
       .join("\n")}`;
   }
 
-  const markdownText = textToMarkdown(apiResponse);
   const summarise = async () => {
     const result = await generateDescription(platformContext.issueKey);
     let formattedResult = textToMarkdown(result);
