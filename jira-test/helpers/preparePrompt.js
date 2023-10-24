@@ -1,11 +1,10 @@
 import api, { route } from "@forge/api";
 
 // Prepare the prompt for OpenAI API
-const preparePrompt = async () => {
-  const url = `https://developer.atlassian.com/platform/forge/`;
+const preparePrompt = async (issueKey) => {
   const response = await api
     .asUser()
-    .requestJira(route`/rest/api/3/issue/{issueIdOrKey}`, {
+    .requestJira(route`/rest/api/3/issue/${issueKey}`, {
       headers: {
         Accept: "application/json",
       },

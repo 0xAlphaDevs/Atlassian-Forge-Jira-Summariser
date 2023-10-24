@@ -1,30 +1,25 @@
-//   const context = useProductContext();
-//   console.log(context);
-
 import ForgeUI, {
   IssuePanel,
-  IssuePanelAction,
   render,
   Text,
   useProductContext,
   useState,
 } from "@forge/ui";
+import { generateDescription } from "../helpers/generateDescription";
 
 const App = () => {
-  // const [waveCount, setWaveCount] = useState(0);
+  const context = useProductContext();
+
+  const [description] = useState(async () => {
+    return await generateDescription();
+  });
+
+  console.log("Summary - " + description);
+
+  console.log(context);
   return (
-    <IssuePanel
-    // actions={[
-    //   <IssuePanelAction
-    //     text="Custom action"
-    //     onClick={() => {
-    //       setWaveCount(waveCount + 1);
-    //     }}
-    //   />,
-    // ]}
-    >
-      {/* <Text>Hello, world! {"👋".repeat(waveCount)}</Text> */}
-      <Text>This is a AI Generated description. </Text>
+    <IssuePanel>
+      <Text>{description} </Text>
     </IssuePanel>
   );
 };
