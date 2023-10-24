@@ -17,6 +17,7 @@ const App = () => {
   );
 
   const [bulletPoints, setBulletPoints] = useState([]);
+  const [buttonText, setButtonText] = useState("Summarise");
 
   // Function to convert plain text to Markdown
   function textToMarkdown(text) {
@@ -36,6 +37,7 @@ const App = () => {
     const result = await generateDescription(platformContext.issueKey);
     let formattedResult = textToMarkdown(result);
     setDescription(formattedResult);
+    setButtonText("Summarise again");
   };
   console.log("Summary - " + description);
 
@@ -49,7 +51,7 @@ const App = () => {
         onClick={async () => {
           await summarise();
         }}
-        text="Summarise"
+        text={buttonText}
       />
     </Fragment>
   );
