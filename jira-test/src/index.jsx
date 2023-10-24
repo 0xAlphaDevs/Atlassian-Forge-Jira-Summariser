@@ -18,6 +18,8 @@ const App = () => {
 
   // Function to convert plain text to Markdown
   function textToMarkdown(text) {
+    // convert text to string
+    text = text.toString();
     const lines = text.split("•");
     const items = lines
       .filter((line) => line.trim() !== "")
