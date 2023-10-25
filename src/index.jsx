@@ -13,40 +13,28 @@ const App = () => {
   const { platformContext } = useProductContext();
 
   const [description, setDescription] = useState(
-    "Description will be shown here."
+    "Summary will be shown here. Click on Summarise button to generate summary."
   );
 
   const [bulletPoints, setBulletPoints] = useState([]);
   const [buttonText, setButtonText] = useState("Summarise");
 
-  // Function to convert plain text to Markdown
-  function textToMarkdown(text) {
-    // convert text to string
-    text = text.toString();
-    const lines = text.split("•");
-    const items = lines
-      .filter((line) => line.trim() !== "")
-      .map((line) => line.trim());
-
-    setBulletPoints(items);
-
-    return `Here is a summary of the issue under 100 words : `;
-  }
-
   const summarise = async () => {
     const result = await generateDescription(platformContext.issueKey);
-    let formattedResult = textToMarkdown(result);
-    setDescription(formattedResult);
+
+    setDescription("Here is the summary :" + "\n");
+    setBulletPoints(result);
     setButtonText("Summarise again");
   };
-  console.log("Summary - " + description);
 
   return (
     <Fragment>
       <Text>{description} </Text>
-      {bulletPoints.map((item) => (
+      <Text>{bulletPoints} </Text>
+
+      {/* {bulletPoints.map((item) => (
         <Text>{item}</Text>
-      ))}
+      ))} */}
       <Button
         onClick={async () => {
           await summarise();

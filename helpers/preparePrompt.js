@@ -12,8 +12,7 @@ const preparePrompt = async (issueKey) => {
 
   const result = await response.json();
 
-  console.log(`Response: ${response.status} ${response.statusText}`);
-  // console.log(result.fields.description.content);
+  // console.log(`Response: ${response.status} ${response.statusText}`);
 
   let combinedText = "";
 

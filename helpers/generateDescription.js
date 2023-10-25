@@ -6,7 +6,7 @@ const generateDescription = async (issueKey) => {
 
   const combinedText = await preparePrompt(issueKey);
 
-  const prompt = `Summarise this text in bullet points for a pull request description under 100 words.\n\n${combinedText}`;
+  const prompt = `Summarise this text in bullet points for a pull request description under 100 world. Don't include any headings in response: \n\n${combinedText}`;
 
   const url = `https://api.replicate.com/v1/predictions`;
 
@@ -29,8 +29,7 @@ const generateDescription = async (issueKey) => {
   // API call to OpenAI
   const response = await fetch(url, options);
   let apiResponse = await response.json();
-  console.log(apiResponse);
-  console.log(apiResponse.status);
+
   let result = "";
 
   if (apiResponse.status == "starting") {
@@ -45,16 +44,13 @@ const generateDescription = async (issueKey) => {
     // API call to OpenAI
     let output = await fetch(predictionUrl, options);
     let prediction = await output.json();
-    console.log(prediction.status);
 
     // poll the api every 2 sec until the status is succedded
     while (prediction.status != "succeeded") {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       output = await fetch(predictionUrl, options);
       prediction = await output.json();
-      // console.log(prediction.status);
       if (prediction.status == "failed" || prediction.status == "canceled") {
-        console.log("API call failed");
         break;
       }
     }
