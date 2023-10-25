@@ -13,18 +13,18 @@ const App = () => {
   const { platformContext } = useProductContext();
 
   const [description, setDescription] = useState(
-    "Summary will be shown here. Click on Summarise button to generate summary."
+    "Summary will be shown here. Click on Summarize button to generate summary."
   );
 
   const [bulletPoints, setBulletPoints] = useState([]);
-  const [buttonText, setButtonText] = useState("Summarise");
+  const [buttonText, setButtonText] = useState("Summarize");
 
   const summarise = async () => {
     const result = await generateDescription(platformContext.issueKey);
 
     setDescription("Here is the summary :" + "\n");
     setBulletPoints(result);
-    setButtonText("Summarise again");
+    setButtonText("Summarize again");
   };
 
   return (

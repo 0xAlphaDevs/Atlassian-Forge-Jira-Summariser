@@ -1,4 +1,4 @@
-# Jira Issue Summariser and PR description Generator
+# Jira Issue Summarizer and PR description Generator
 
 Codegeist Unleashed
 
@@ -12,40 +12,35 @@ Team [AlphaDevs](https://alphadevs.dev) 👇
 
 ## Links
 
-- [Deployed URL]()
-- [Git Repo with README]()
-- [Presentation PDF]()
-
+- [Sharable Link to Test]()
+- [Git Repo with README](https://github.com/0xAlphaDevs/Atlassian-Forge-Jira-Summarizer)
+- [Presentation PDF](https://docs.google.com/presentation/d/1G5A6KI3aJJHsoXeOX3pojxewDNjXoukKFlrTfrxFLIQ)
 
 ## Project Specs
 
 - Forge (CLI & API)
 - Replicate (Running machine learning models in the cloud)
-- 
-
+- llama-2-7b-chat AI model
+- Atlassian Developer Tools
 
 ## App Working / ScreenShots
 
-![image]()
-
+![image](/public/screenshots/1.png)
+![image](/public/screenshots/2.png)
 
 ## Tech Stack / Libraries
 
-### Frontend
-
-- Atlassian UI Kit
-
-### Other
-
+- Atlassian Forge CLI
+- forge/ui
+- forge/api
 - Replicate
-- Forge API
-- Forge CLI
-  
+- React
 
 ## Our Solution (Architecture)
 
-### 1. 
-
+- A trained model (llama-2-7b-chat) is used to summarize text in Jira Software issues
+- This Jira app intelligently summarizes text within Jira issues, providing clear overviews of complex and lengthy technical descriptions.
+- The app uses Jira APIs, forge cli and forge api libraries to achieve this.
 
 ## Team
 
