@@ -12,7 +12,7 @@ Team [AlphaDevs](https://alphadevs.dev) 👇
 
 ## Links
 
-- [Sharable Link to Test]()
+- [Sharable Link to Test](https://developer.atlassian.com/console/install/739e4d67-7f9e-409e-ad84-73ac9fbebc91?signature=5f2864f58d8c12b7754e0b767bd5c40c5425f55f0b8b72ac767d2928eb73c262a8004b312199ee15deb853265a1c0d34c405619e93cd171d9b5278c341c5a066&product=jira)
 - [Git Repo with README](https://github.com/0xAlphaDevs/Atlassian-Forge-Jira-Summarizer)
 - [Presentation PDF](https://docs.google.com/presentation/d/1G5A6KI3aJJHsoXeOX3pojxewDNjXoukKFlrTfrxFLIQ)
 
